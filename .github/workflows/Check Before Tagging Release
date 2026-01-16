@@ -1,0 +1,22 @@
+name: Check Before Tagging Release
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+jobs:
+  validate-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Confirm CHANGELOG.md was updated
+        run: |
+          git diff-tree -r --name-only --no-commit-id ${{ github.sha }} | grep CHANGELOG.md || \
+          (echo "Missing CHANGELOG.md in release tag commit" && exit 1)
+
+      - name: Validate status.yaml presence
+        run: |
+          if [ ! -f ./status.yaml ]; then
+            echo "Missing status.yaml!" && exit 1
+          fi
