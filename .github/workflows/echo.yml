@@ -4,9 +4,14 @@ on:
         branches: [ "main" ]
     pull_request:
         branches: [ "main" ]
+permissions:
+    contents: read
+    statuses: write
+    checks: write
+    pull-requests: write
 jobs:
     echo-job:
-        runs-on: [self-hosted, linux, x6]
+        runs-on: [self-hosted, Linux, X64]
         steps:
             - name: Echo Hello World
               run: echo "Hello, World!"
