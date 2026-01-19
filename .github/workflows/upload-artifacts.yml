@@ -1,0 +1,23 @@
+name: upload-artifacts
+on:
+    push:
+        branches: [ "main" ]
+permissions:
+    contents: read
+    statuses: write
+    checks: write
+    pull-requests: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Create output directory and file
+        run: |
+          mkdir -p output
+          echo "Sample artifact content" > output/123.txt
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: my-artifact
+          path: ./output/123.txt
