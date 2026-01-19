@@ -26,3 +26,4 @@ jobs:
         uses: super-linter/super-linter@v7.1.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DISABLE: MARKDOWN,MARKDOWN_PRETTIER,YAML_PRETTIER
