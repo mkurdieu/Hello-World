@@ -6,7 +6,7 @@ on:
         branches: [ "main" ]
 jobs:
     echo-job:
-        runs-on: self-hosted, linux, x64
+        runs-on: [self-hosted, linux, x6]
         steps:
             - name: Echo Hello World
               run: echo "Hello, World!"
